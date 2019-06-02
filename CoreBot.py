@@ -132,5 +132,4 @@ def jumper(ID, trigger, **kwargs):
     state = Repo.Read_user(ID)['state']
     tr = DFA.jump(trigger, state)
     res = tr.fn(ID, trigger, **kwargs)
-    user['state'] = tr.ds
     return res
