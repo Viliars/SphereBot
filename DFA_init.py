@@ -1,5 +1,5 @@
 from CoreBot import DFA, PF
-
+from messages import *
 
 def DFA_init():
     DFA.add_state("some_words_1")
@@ -44,3 +44,29 @@ def DFA_init():
     DFA.add_transition('.*', "endprob_3", "problem_4", PF.any)
     DFA.add_transition('.*', "problem_4", "endprob_4", PF.any_save)
     DFA.add_transition('.*', "endprob_4", "endprob_4", PF.any)
+
+    DFA.add_template("some_words_1", {'message': msg['start'],
+                                           'keyboard':
+                                               [
+                                                   [but['b1']],
+                                               ]
+                                                })
+    DFA.add_template("some_words_2", {'message': msg['q1'],
+                                           'keyboard':
+                                               [
+                                                   [but['b2']],
+                                               ]
+                                                })
+    DFA.add_template("input_phone", {'message': msg['phone']})
+    DFA.add_template("input_email", {'message': msg['email']})
+    DFA.add_template("input_phone_error", {'message': msg['error1']})
+    DFA.add_template("input_email_error", {'message': msg['error2']})
+    DFA.add_template("end_input", {'message': msg['main'],
+                                           'keyboard':
+                                               [
+                                                   [but['b3']],
+                                               ]
+                                                })
+    DFA.add_template("problem_1", {'message': task['1']})
+    DFA.add_template("input_email", {'message': msg['email']})
+    DFA.add_template("input_email", {'message': msg['email']})

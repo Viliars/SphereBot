@@ -36,7 +36,7 @@ class VKBot:
             try:
                 answer = self.func(**params)
             except Exception as e:
-                print("ERROR")
+                print(e)
                 continue
 
             params = {"peer_id": answer['ID'], "random_id": get_random_id()}

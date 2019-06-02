@@ -8,8 +8,8 @@ print('Start VKBot')
 
 while True:
     try:
-        VKBot(token, '181244512', jumper).start()
+        VKBot(token, '182858848', jumper).start()
     except Exception as e:
-        pass
+        print(e)
 
 
