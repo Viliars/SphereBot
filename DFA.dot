@@ -1,0 +1,43 @@
+digraph Bot_DFA {
+    start;
+    some_words_1;
+    some_words_2;
+    input_phone;
+    input_email;
+    input_phone_error;
+    input_email_error;
+    end_input;
+    problem_1;
+    endprob_1;
+    problem_2;
+    endprob_2;
+    problem_3;
+    endprob_3;
+    problem_4;
+    endprob_4;
+
+    start -> some_words_1 [label="any"]
+    some_words_1 -> some_words_2 [label="any"]
+    some_words_2 -> input_phone [label="any"]
+
+    input_phone -> input_email [label="parse_phone"]
+    input_phone -> input_phone_error [label="any"]
+    input_phone_error -> input_email [label="parse_phone"]
+    input_phone_error -> input_phone_error [label="any"]
+
+    input_email -> end_input [label="parse_email"]
+    input_email -> input_email_error [label="any"]
+    input_email_error -> end_input [label="parse_email"]
+    input_email_error -> input_email_error [label="any"]
+
+    end_input -> problem_1 [label="any"]
+    problem_1 -> endprob_1 [label="any_save"]
+    endprob_1 -> problem_2 [label="any"]
+    problem_2 -> endprob_2 [label="any_save"]
+    endprob_2 -> problem_3 [label="any"]
+    problem_3 -> endprob_3 [label="any_save"]
+    endprob_3 -> problem_4 [label="any"]
+    problem_4 -> endprob_4 [label="any_save"]
+
+    endprob_4 -> endprob_4 [label="any"] //end
+}
