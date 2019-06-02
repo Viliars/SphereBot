@@ -94,7 +94,7 @@ def processdecor(func):
 class PF:
     @staticmethod
     def start(ID, trigger, **kwargs):
-        user = {'ID' : ID, 'state' : DFA.start}
+        user = {'ID': ID, 'state': DFA.start}
         res = DFA.templates[DFA.start].copy()
         res['ID'] = ID
         Repo.Create_user(ID, user)
