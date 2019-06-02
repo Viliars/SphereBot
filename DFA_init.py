@@ -68,5 +68,4 @@ def DFA_init():
                                                ]
                                                 })
     DFA.add_template("problem_1", {'message': task['1']})
-    DFA.add_template("input_email", {'message': msg['email']})
-    DFA.add_template("input_email", {'message': msg['email']})
+    DFA.add_template("endprob_1", {'message': msg['end']})
