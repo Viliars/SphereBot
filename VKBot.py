@@ -41,7 +41,6 @@ class VKBot:
 
             params = {"peer_id": answer['ID'], "random_id": get_random_id()}
 
-
             # Смотрим, существуют ли кнопки
             keyboard = answer.get('keyboard')
             if keyboard is not None:
