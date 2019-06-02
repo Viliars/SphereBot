@@ -1,5 +1,4 @@
 digraph Bot_DFA {
-    start;
     some_words_1;
     some_words_2;
     input_phone;
@@ -16,7 +15,6 @@ digraph Bot_DFA {
     problem_4;
     endprob_4;
 
-    start -> some_words_1 [label="any"]
     some_words_1 -> some_words_2 [label="any"]
     some_words_2 -> input_phone [label="any"]
 

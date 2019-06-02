@@ -9,7 +9,7 @@ class DFA:
     """DFA for bot execution"""
     states = set()
     transitions = {}
-    start = 'start'
+    start = 'some_words_1'
     templates = {}
 
     @staticmethod
@@ -80,15 +80,58 @@ class Repo:
         db.close()
 
 
+def processdecor(func):
+    def wrapper(ID, trigger, **kwargs):
+        user = Repo.Read_user(ID)
+        user['state'] = DFA.jump(trigger, user['state'])[1]
+
+        res = func(user, trigger, **kwargs)
+        res['ID'] = ID
+
+        Repo.Update_user(ID, user)
+        return res
+    return wrapper
+
+
 class PF:
-    pass
+    @staticmethod
+    def start(ID, trigger, **kwargs):
+        user = {'ID' : ID, 'state' : DFA.start}
+        res = DFA.templates[DFA.start].copy()
+        res['ID'] = ID
+        Repo.Create_user(ID, user)
+        return res
+
+    @staticmethod
+    @processdecor
+    def any(user, trigger, **kwargs):
+        return DFA.templates[user['state']]
+
+    @staticmethod
+    @processdecor
+    def any_save(user, trigger, **kwargs):
+        user[user['state']] = trigger
+        return DFA.templates[user['state']]
+
+    @staticmethod
+    @processdecor
+    def parse_phone(user, trigger, **kwargs):
+        user['phone'] = trigger
+        return DFA.templates[user['state']]
+        
+    @staticmethod
+    @processdecor
+    def parse_email(user, trigger, **kwargs):
+        user['email'] = trigger
+        return DFA.templates[user['state']]
+
 
 
 def jumper(ID, trigger, **kwargs):
     if not Repo.In_Repo(ID):
         return PF.start(ID, trigger, **kwargs)
-    state = Repo.Read_user(ID).state
+    state = Repo.Read_user(ID)['state']
     tr = DFA.jump(trigger, state)
     res = tr.fn(ID, trigger, **kwargs)
-    user.state = tr.ds
+    user['state'] = tr.ds
     return res
