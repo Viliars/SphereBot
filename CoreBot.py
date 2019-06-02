@@ -58,14 +58,12 @@ class Repo:
     @staticmethod
     def Create_user(ID, user):
         Repo.users[ID] = user
+        Repo.file_save("USERS")
 
     @staticmethod
     def Update_user(ID, user):
         Repo.users[ID] = user
-
-    @staticmethod
-    def Delete_user(ID):
-        del Repo.users[ID]
+        Repo.file_save("USERS")
 
     @staticmethod
     def file_save(filename):
