@@ -48,7 +48,7 @@ class VKBot:
                 buttons = VkKeyboard(one_time=False)
                 for i, line in enumerate(keyboard):
                     for button in line:
-                        buttons.add_button(button, color=VkKeyboardColor.PRIMARY, )
+                        buttons.add_button(button, color=VkKeyboardColor.PRIMARY)
                     if i + 1 < len(keyboard):
                         buttons.add_line()
                 # Добавляем клавиатуру в параметры сообщения
