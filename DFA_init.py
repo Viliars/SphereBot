@@ -33,11 +33,11 @@ def DFA_init():
 
     # ----- Задачи -----
     DFA.add_transition(None, "end_input", "problem_1", PF.any)
-    DFA.add_transition(None, "problem_1", "endprob_1", PF.any)
+    DFA.add_transition(None, "problem_1", "endprob_1", PF.any_save)
     DFA.add_transition(None, "endprob_1", "problem_2", PF.any)
-    DFA.add_transition(None, "problem_2", "endprob_2", PF.any)
+    DFA.add_transition(None, "problem_2", "endprob_2", PF.any_save)
     DFA.add_transition(None, "endprob_2", "problem_3", PF.any)
-    DFA.add_transition(None, "problem_3", "endprob_3", PF.any)
+    DFA.add_transition(None, "problem_3", "endprob_3", PF.any_save)
     DFA.add_transition(None, "endprob_3", "problem_4", PF.any)
-    DFA.add_transition(None, "problem_4", "endprob_4", PF.any)
+    DFA.add_transition(None, "problem_4", "endprob_4", PF.any_save)
     DFA.add_transition(None, "endprob_4", "endprob_4", PF.any)
