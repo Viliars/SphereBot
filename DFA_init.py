@@ -68,4 +68,25 @@ def DFA_init():
                                                ]
                                                 })
     DFA.add_template("problem_1", {'message': task['1']})
-    DFA.add_template("endprob_1", {'message': msg['end']})
+    DFA.add_template("endprob_1", {'message': msg['buf'],
+                                           'keyboard':
+                                               [
+                                                   [but['b4']],
+                                               ]
+                                                })
+    DFA.add_template("problem_2", {'message': task['2']})
+    DFA.add_template("endprob_2", {'message': msg['buf'],
+                                           'keyboard':
+                                               [
+                                                   [but['b4']],
+                                               ]
+                                                })
+    DFA.add_template("problem_3", {'message': task['3']})
+    DFA.add_template("endprob_3", {'message': msg['buf'],
+                                           'keyboard':
+                                               [
+                                                   [but['b4']],
+                                               ]
+                                                })
+    DFA.add_template("problem_4", {'message': task['4']})
+    DFA.add_template("endprob_4", {'message': msg['end']})
