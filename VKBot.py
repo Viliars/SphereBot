@@ -45,7 +45,7 @@ class VKBot:
             keyboard = answer.get('keyboard')
             if keyboard is not None:
                 # Создаем VkKeyboard и добавляем туда кнопки, согласно протоколу
-                buttons = VkKeyboard(one_time=False)
+                buttons = VkKeyboard(one_time=True)
                 for i, line in enumerate(keyboard):
                     for button in line:
                         buttons.add_button(button, color=VkKeyboardColor.PRIMARY)
