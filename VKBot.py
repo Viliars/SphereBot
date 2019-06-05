@@ -57,7 +57,11 @@ class VKBot:
             # Добавляем сообщение, если оно есть
             message = answer.get("message")
             if message is not None:
-                params.update({"message": message})
+                if type(message) is list:
+                    self.vk.messages.send(peer_id=params['peer_id'], message=message[0], random_id=get_random_id())
+                    params.update({"message": message[1]})
+                else:
+                    params.update({"message": message})
 
             # TODO сделать поддержку вложений и стикеров
             # Отправляем сообщение пользователю

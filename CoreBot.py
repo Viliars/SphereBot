@@ -114,6 +114,12 @@ class PF:
 
     @staticmethod
     @processdecor
+    def get_feedback(user, trigger, **kwargs):
+        user[user['state']] = trigger
+        return DFA.templates[user['state']]
+
+    @staticmethod
+    @processdecor
     def parse_phone(user, trigger, **kwargs):
         user['phone'] = trigger
         return DFA.templates[user['state']]

@@ -17,6 +17,8 @@ def DFA_init():
     DFA.add_state("endprob_3")
     DFA.add_state("problem_4")
     DFA.add_state("endprob_4")
+    DFA.add_state("feedback_1")
+    DFA.add_state("feedback_2")
 
     reph = r'^ *(\+? *7|8)? *-? *(\(9\d\d\)|9\d\d) *( *-? *\d){7} *$'
     reem = r'''(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])'''
@@ -43,7 +45,9 @@ def DFA_init():
     DFA.add_transition('.*', "problem_3", "endprob_3", PF.any_save)
     DFA.add_transition('.*', "endprob_3", "problem_4", PF.any)
     DFA.add_transition('.*', "problem_4", "endprob_4", PF.any_save)
-    DFA.add_transition('.*', "endprob_4", "endprob_4", PF.any)
+    DFA.add_transition('.*', "endprob_4", "feedback_1", PF.get_feedback)
+    DFA.add_transition('.*', "feedback_1", "feedback_2", PF.get_feedback)
+    DFA.add_transition('.*', "feedback_2", "feedback_2", PF.any)
 
     DFA.add_template("some_words_1", {'message': msg['start'],
                                            'keyboard':
@@ -89,4 +93,21 @@ def DFA_init():
                                                ]
                                                 })
     DFA.add_template("problem_4", {'message': task['4']})
-    DFA.add_template("endprob_4", {'message': msg['end']})
+    DFA.add_template("endprob_4", {'message': [msg['ok'], msg['feedback1']],
+                                           'keyboard':
+                                               [
+                                                   ['Очень легкие'],
+                                                   ['Средней сложности'],
+                                                   ['Очень сложные']
+                                               ]
+                                                })
+
+    DFA.add_template("feedback_1", {'message': msg['feedback2'],
+                                           'keyboard':
+                                               [
+                                                   ['3'],
+                                                   ['2'],
+                                                   ['1']
+                                               ]
+                                                })
+    DFA.add_template("feedback_2", {'message': msg['end']})

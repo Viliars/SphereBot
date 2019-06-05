@@ -5,10 +5,9 @@ from DFA_init import DFA_init
 
 DFA_init()
 print('Start VKBot')
-
 while True:
     try:
-        Repo.file_load()
+        Repo.file_load("USERS")
         VKBot(token, '182858848', jumper).start()
     except Exception as e:
         print(e)
