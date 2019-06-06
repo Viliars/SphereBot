@@ -92,7 +92,7 @@ def DFA_init():
                                                    [but['b4']],
                                                ]
                                                 })
-    DFA.add_template("problem_4", {'message': task['4']})
+    DFA.add_template("problem_4", {'message': task['4'], 'attachments': ['task4.jpg']})
     DFA.add_template("endprob_4", {'message': [msg['ok'], msg['feedback1']],
                                            'keyboard':
                                                [

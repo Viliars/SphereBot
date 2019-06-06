@@ -12,7 +12,7 @@ class VKBot:
         self.group = group_id
         self.func = func
         # Для Long Poll
-        self.vk_session = vk_api.VkApi(token=api_token, scope=vk_api.vk_api.VkUserPermissions.MESSAGES)
+        self.vk_session = vk_api.VkApi(token=api_token, scope=4096)
 
         # Для загрузки файлов
         self.upload = VkUpload(self.vk_session)
